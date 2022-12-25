@@ -1,0 +1,65 @@
+	Problem Description
+Given two binary strings A and B. Return their sum (also a binary string).
+
+
+Problem Constraints
+1 <= length of A <= 105
+
+1 <= length of B <= 105
+
+A and B are binary strings
+
+
+
+Input Format
+The two argument A and B are binary strings.
+
+
+
+Output Format
+Return a binary string denoting the sum of A and B
+
+
+
+Example Input
+Input 1:
+A = "100"
+B = "11"
+Input 2:
+A = "110"
+B = "10"
+
+
+Example Output
+Output 1:
+"111"
+Output 2:
+"1000"
+
+SOLUTION:
+  
+  def addBinary(a, b):
+        max_len = max(len(a), len(b))
+        a = a.zfill(max_len)
+        b = b.zfill(max_len)
+        
+        # Initialize the result
+        result = ''
+        
+        # Initialize the carry
+        carry = 0
+        
+        # Traverse the string
+        for i in range(max_len - 1, -1, -1):
+            r = carry
+            r += 1 if a[i] == '1' else 0
+            r += 1 if b[i] == '1' else 0
+            result = ('1' if r % 2 == 1 else '0') + result
+        
+            # Compute the carry.
+            carry = 0 if r < 2 else 1
+        
+        if carry != 0:
+            result = '1' + result  
+        
+        return (result.zfill(max_len))
