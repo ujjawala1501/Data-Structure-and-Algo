@@ -1,0 +1,21 @@
+ Problem description:
+ 
+ Given an array A of N integers. Count the number of elements that have at least 1 elements greater than itself.
+
+ SOLUTION:
+ 
+    def solve(self, A):
+        #FIND max element first 
+        max_el=A[0]
+        N=len(A)
+        for i in range(1,len(A)):
+            if max_el<A[i]:
+                max_el=A[i]
+        #Once found max element count it then substract from total number of elements in the list
+        #that will give number of smaller values
+        count=0
+        for j in range(len(A)):
+            if max_el ==A[j]:
+                count+=1
+        return N-count
+        
