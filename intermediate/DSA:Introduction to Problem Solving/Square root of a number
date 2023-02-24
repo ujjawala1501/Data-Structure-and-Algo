@@ -1,0 +1,17 @@
+#Problem Description
+
+Given a number A. Return square root of the number if it is perfect square otherwise return -1.
+
+Solution:
+
+import math
+class Solution:
+    # @param A : integer
+    # @return an integer
+    def solve(self, A):
+        for i in range(1,int(math.sqrt(A))+1):
+            if i*i==A:
+                #print("inside if")
+                return i
+        return -1
+        
