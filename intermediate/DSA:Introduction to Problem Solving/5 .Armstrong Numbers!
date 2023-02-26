@@ -1,0 +1,56 @@
+Problem Description
+
+You are given an integer N you need to print all the Armstrong Numbers between 1 to N. (N inclusive).
+If sum of cubes of each digit of the number is equal to the number itself, then the number is called an Armstrong number.
+For example, 153 = ( 1 * 1 * 1 ) + ( 5 * 5 * 5 ) + ( 3 * 3 * 3 ).
+Note: All the test cases in this problem are limited to 3 digit numbers.
+
+Problem Constraints
+1 <= N <= 500
+
+Input Format
+First and only line of input contains an integer N.
+
+Output Format
+Output all the Armstrong numbers in range [1,N] each in a new line.
+
+Example Input
+Input 1:
+ 5
+ 
+Input 2:
+ 200
+
+
+Example Output
+Output 1:
+1
+
+Output 2:
+1
+153
+
+
+Solution:
+
+def main():
+    # YOUR CODE GOES HERE
+    # Please take input and print output to standard input/output (stdin/stdout)
+    # E.g. 'input()/raw_input()' for input & 'print' for output
+    N=int(input())
+    for i in range(1,N+1):
+        sum=0
+        j=i
+        while j>0:
+            A=j%10
+            A=A**3
+            sum+=A
+            j=j//10
+        if sum==i:
+            print(i)            
+        
+
+    return 0
+
+if __name__ == '__main__':
+    main()
