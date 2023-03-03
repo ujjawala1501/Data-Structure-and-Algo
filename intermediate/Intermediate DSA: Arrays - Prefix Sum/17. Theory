@@ -1,0 +1,8 @@
+Q1 . Prefix Sum Formula
+The prefix sum formula for an array A of N integers is given by :-
+Ans: prefSum[i] = prefSum[i - 1] + A[i]
+
+Q2. What is the time complexity of creating the prefix sum array of an array A of N integers ?
+Ans: O(N)
+
+
