@@ -1,0 +1,163 @@
+Problem Description
+Given an array, arr[] of size N, the task is to find the count of array indices such that removing an element from these indices makes the sum of even-indexed and odd-indexed array elements equal.
+
+Problem Constraints
+1 <= n <= 105
+-105 <= A[i] <= 105
+
+Input Format
+First argument contains an array A of integers of size N
+
+Output Format
+Return the count of array indices such that removing an element from these indices makes the sum of even-indexed and odd-indexed array elements equal.
+
+Example Input
+Input 1:
+A=[2, 1, 6, 4]
+Input 2:
+A=[1, 1, 1]
+
+Example Output
+Output 1:
+1
+Output 2:
+3
+
+Example Explanation
+Explanation 1:
+Removing arr[1] from the array modifies arr[] to { 2, 6, 4 } such that, arr[0] + arr[2] = arr[1]. 
+Therefore, the required output is 1. 
+Explanation 2:
+
+Removing arr[0] from the given array modifies arr[] to { 1, 1 } such that arr[0] = arr[1] 
+Removing arr[1] from the given array modifies arr[] to { 1, 1 } such that arr[0] = arr[1] 
+Removing arr[2] from the given array modifies arr[] to { 1, 1 } such that arr[0] = arr[1] 
+Therefore, the required output is 3.
+
+SOLUTION:
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self, A):
+        n=len(A)
+        if (n == 1):
+            return 1
+ 
+        # If size of the array is 2
+        if (n == 2):
+            return 0
+    
+        # Stores sum of even-indexed
+        # elements of the given array
+        sumEven = 0
+    
+        # Stores sum of odd-indexed
+        # elements of the given array
+        sumOdd = 0
+    
+        # Traverse the array
+        for i in range(n):
+    
+            # If i is an even number
+            if (i % 2 == 0):
+    
+                # Update sumEven
+                sumEven += A[i]
+    
+            # If i is an odd number
+            else:
+    
+                # Update sumOdd
+                sumOdd += A[i]
+    
+        # Stores sum of even-indexed
+        # array elements till i-th index
+        currOdd = 0
+    
+        # Stores sum of odd-indexed
+        # array elements till i-th index
+        currEven = A[0]
+    
+        # Stores count of indices whose
+        # removal makes sum of odd and
+        # even indexed elements equal
+        res = 0
+        
+        # Stores sum of even-indexed elements
+        # after removing the i-th element
+        newEvenSum = 0
+    
+        # Stores sum of odd-indexed elements
+        # after removing the i-th element
+        newOddSum = 0
+    
+        # Traverse the array
+        for i in range(1, n - 1):
+    
+            # If i is an odd number
+            if (i % 2):
+                
+                # Update currOdd
+                currOdd += A[i]
+    
+                # Update newEvenSum
+                newEvenSum = (currEven + sumOdd -
+                            currOdd)
+    
+                # Update newOddSum
+                newOddSum = (currOdd + sumEven -
+                            currEven - A[i])
+    
+            # If i is an even number
+            else:
+    
+                # Update currEven
+                currEven += A[i]
+    
+                # Update newOddSum
+                newOddSum = (currOdd + sumEven -
+                            currEven)
+    
+                # Update newEvenSum
+                newEvenSum = (currEven + sumOdd -
+                            currOdd - A[i])
+            
+            # If newEvenSum is equal to newOddSum
+            if (newEvenSum == newOddSum):
+    
+                # Increase the count
+                res += 1
+    
+        # If sum of even-indexed and odd-indexed
+        # elements is equal by removing the first
+        # element
+        if (sumOdd == sumEven - A[0]):
+    
+            # Increase the count
+            res += 1
+    
+        # If length of the array
+        # is an odd number
+        if (n % 2 == 1):
+    
+            # If sum of even-indexed and odd-indexed
+            # elements is equal by removing the last
+            # element
+            if (sumOdd == sumEven - A[n - 1]):
+    
+                # Increase the count
+                res += 1
+    
+        # If length of the array
+        # is an even number
+        else:
+    
+            # If sum of even-indexed and odd-indexed
+            # elements is equal by removing the last
+            # element
+            if (sumEven == sumOdd - A[n - 1]):
+    
+                # Increase the count
+                res += 1
+    
+        return res
