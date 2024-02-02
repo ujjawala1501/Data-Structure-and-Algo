@@ -1,2 +1,2 @@
 # Data-Structure-and-Algo
-Notes for Data structure and algo 
+Notes for Data structure and algoithms  
